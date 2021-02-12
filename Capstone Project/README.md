@@ -97,7 +97,7 @@ Hyperdrive parameters:
 
 Hyperdrive Best Run and Parameters are given below:
 
-![Hyperdrive Best Run and Parameters are given below:](images/10.PNG)
+![Hyperdrive Best Run and Parameters are given below:](images/x2.PNG)
 
 Hyperdrive Best Run Details:
 
