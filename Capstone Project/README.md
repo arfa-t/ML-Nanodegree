@@ -61,20 +61,24 @@ AML Best Run Completed:
 
 ![AML Best Run Completed: ](images/4.PNG) 
 
-## Hyperparameter Tuning :What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+### Hyperparameter Tuning :
+#### What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
 
 Azure Hyperdrive package helps to automate choosing hyperparameter, which are adjustable parameters you choose for model training that guides the training process.
 
-The model used is Logistic Regression as it utilizes a sigmoid function and works best on binary classification problems. It is implemented with scikit-learn.
-The hyperparameters tuned are the inverse regularization strength -C ( Smaller values of C cause stronger regularization) and maximum iterations(max_iter) and a random sampling method over the search space.
+1. The model used is Logistic Regression as it utilizes a sigmoid function and works best on binary classification problems. It is implemented with scikit-learn.
+2. The hyperparameters tuned are the inverse regularization strength -C ( Smaller values of C cause stronger regularization) and maximum iterations(max_iter) and a random sampling method over the search space.
 The range for hyperparameters: 
-Inverse regularization(C): (0.01, 0.1, 1, 10, 100, 1000, 10000)
-Maximum iterations: (25,90,150,200)
-A primary metric "Accuracy" is specified, which must be maximized to optimize the hyperparameter tuning experiment.
-The parameters sampler chosen is Random Sampling, in which algorithm parameter values can be chosen from a set of discrete values or a distribution over a continuous range. Random sampling supports early termination of low-performance runs. We can users do an initial search with random sampling and then refine the search space to improve results.
-Early stopping policy: I used a BanditPolicy with evaluation_interval of 5 and slack_factor of 0.1. Since early termination policies cause the poorly performing experiment runs to be cancelled so any run that doesn't fall within the slack factor or slack amount of the evaluation metric with respect to the best performing run will be terminated. This means that after every 5 intervals, any run with its accuracy less than the best performing run's accuracy minus slack_factor 0.1 will be terminated. This saves us computational time since low-performance runs will be terminated.
 
-### HuperDrive 
+Inverse regularization(C): (0.01, 0.1, 1, 10, 100, 1000, 10000)
+
+Maximum iterations: (25,90,150,200)
+
+3. A primary metric "Accuracy" is specified, which must be maximized to optimize the hyperparameter tuning experiment.
+The parameters sampler chosen is Random Sampling, in which algorithm parameter values can be chosen from a set of discrete values or a distribution over a continuous range. Random sampling supports early termination of low-performance runs. We can users do an initial search with random sampling and then refine the search space to improve results.
+4. Early stopping policy: I used a BanditPolicy with evaluation_interval of 5 and slack_factor of 0.1. Since early termination policies cause the poorly performing experiment runs to be cancelled so any run that doesn't fall within the slack factor or slack amount of the evaluation metric with respect to the best performing run will be terminated. This means that after every 5 intervals, any run with its accuracy less than the best performing run's accuracy minus slack_factor 0.1 will be terminated. This saves us computational time since low-performance runs will be terminated.
+
+### HyperDrive 
 #### Results What are the results you got with your model? What were the parameters of the model? How could you have improved it?
 
 The hyperdrive model model gave an accuracy of 81.6% with the following hyperparameters: C = 1000 and maximum iterations of 20. It performed better than AutoML’s best run so it will be deployed. The model could be improved by increasing the maximum number of iterations from 20.
@@ -106,18 +110,28 @@ Hyperdrive Best Run Details:
 
 ### An overview of the top two models with the best parameters
 1. The whole hyperdrive run took about 13m 49.48s. In hyperdrive, the top performing model had an accuracy of 81.6% with the following parameters:
+
 {'Regularization Strength:': 1000.0,
+
  'Max iterations:': 20,
+ 
  'accuracy': 0.8161137440758294}
+ 
  The second best model had an accuracy of 81.6% with the following parameters:
+ 
 {'Regularization Strength':10,
+
 'Max iterations': 90,
+
 'accuracy':0.8123222748815165}
 2. The automl run took about 41 minutes to complete. The best AML model had an accuracy of 81.6% with the Voting Ensemble model with 100% sampling. Other parameters were:
 AUC weighted: 0.84807
 ensemble_weights : [0.07692307692307693, 0.15384615384615385, 0.23076923076923078, 0.07692307692307693, 0.07692307692307693, 0.15384615384615385, 0.15384615384615385, 0.07692307692307693]
+
 ensembled_algorithms : ['LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'ExtremeRandomTrees']
+
 ensembled_iterations : [41, 80, 88, 47, 6, 70, 73, 81]
+
 F1 score weighted: 0.80119
 
 The second best model was Standard Scaler model with LightBGM,it had an accuracy of 80.4%. The AutoML Run took about 30 minutes.
@@ -125,6 +139,7 @@ The second best model was Standard Scaler model with LightBGM,it had an accuracy
 
 
 ### Model Deployment
+
 #### Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
  
 The best model from hyperdrive run is first registered and then deployed locally. To deploy locally, the code is modified using LocalWebservice.deploy_configuration() to create a deployment configuration. Then we use Model.deploy() to deploy the service!
