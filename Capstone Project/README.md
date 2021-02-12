@@ -70,12 +70,13 @@ Azure Hyperdrive package helps to automate choosing hyperparameter, which are ad
 2. The hyperparameters tuned are the inverse regularization strength -C ( Smaller values of C cause stronger regularization) and maximum iterations(max_iter) and a random sampling method over the search space.
 The range for hyperparameters: 
 
-Inverse regularization(C): (0.01, 0.1, 1, 10, 100, 1000, 10000)
+    Inverse regularization(C): (0.01, 0.1, 1, 10, 100, 1000, 10000)
 
-Maximum iterations: (25,90,150,200)
+    Maximum iterations: (25,90,150,200)
 
 3. A primary metric "Accuracy" is specified, which must be maximized to optimize the hyperparameter tuning experiment.
 The parameters sampler chosen is Random Sampling, in which algorithm parameter values can be chosen from a set of discrete values or a distribution over a continuous range. Random sampling supports early termination of low-performance runs. We can users do an initial search with random sampling and then refine the search space to improve results.
+
 4. Early stopping policy: I used a BanditPolicy with evaluation_interval of 5 and slack_factor of 0.1. Since early termination policies cause the poorly performing experiment runs to be cancelled so any run that doesn't fall within the slack factor or slack amount of the evaluation metric with respect to the best performing run will be terminated. This means that after every 5 intervals, any run with its accuracy less than the best performing run's accuracy minus slack_factor 0.1 will be terminated. This saves us computational time since low-performance runs will be terminated.
 
 ### HyperDrive 
@@ -119,22 +120,23 @@ Hyperdrive Best Run Details:
  
  The second best model had an accuracy of 81.6% with the following parameters:
  
-{'Regularization Strength':10,
+  {'Regularization Strength':10,
 
-'Max iterations': 90,
+  'Max iterations': 90,
 
-'accuracy':0.8123222748815165}
-2. The automl run took about 41 minutes to complete. The best AML model had an accuracy of 81.6% with the Voting Ensemble model with 100% sampling. Other parameters were:
-AUC weighted: 0.84807
-ensemble_weights : [0.07692307692307693, 0.15384615384615385, 0.23076923076923078, 0.07692307692307693, 0.07692307692307693, 0.15384615384615385, 0.15384615384615385, 0.07692307692307693]
+  'accuracy':0.8123222748815165}
+  
+2. The automl run took about 41 minutes to complete. The best AML model had an accuracy of 81.6% with the Voting Ensemble model with 100% sampling. Other         parameters were:
+  AUC weighted: 0.84807
+  ensemble_weights : [0.07692307692307693, 0.15384615384615385, 0.23076923076923078, 0.07692307692307693, 0.07692307692307693, 0.15384615384615385,    0.15384615384615385, 0.07692307692307693]
 
-ensembled_algorithms : ['LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'ExtremeRandomTrees']
+  ensembled_algorithms : ['LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'ExtremeRandomTrees']
 
-ensembled_iterations : [41, 80, 88, 47, 6, 70, 73, 81]
+  ensembled_iterations : [41, 80, 88, 47, 6, 70, 73, 81]
 
-F1 score weighted: 0.80119
+  F1 score weighted: 0.80119
 
-The second best model was Standard Scaler model with LightBGM,it had an accuracy of 80.4%. The AutoML Run took about 30 minutes.
+  The second best model was Standard Scaler model with LightBGM,it had an accuracy of 80.4%. The AutoML Run took about 30 minutes.
 
 
 
