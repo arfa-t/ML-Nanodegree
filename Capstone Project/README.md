@@ -37,20 +37,25 @@ AutoML Config Parameters:
    5. The metric that Automated Machine Learning will optimize for model selection is called primary metric, here it is set to accuracy, which means the algorithms will chosen based on the highest accuracy.
    6. Training data is given as "data".
    7. Compute target is the Azure Machine Learning compute target to run the Automated Machine Learning experiment on, it is set to the name of the compute we created above.
-   8. The label column which is going to be predicted is “Churn”. ![“Churn”.](images/18.PNG)
+   8. The label column which is going to be predicted is “Churn”. 
+   ![“Churn”.](images/18.PNG)
 
 ### Results: 
 #### What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
 
 The  top contender if AutoML is Voting Ensemble model with accuracy of 80.9%. The model can be improved by increasing the number of iterations, changing the timeout to let the automl run for more than 30 minutes and using neural networks for classification.
 
-AutoML Results:![AutoML Results:](images/1.PNG)
+AutoML Results:
+![AutoML Results:](images/1.PNG)
 
-AML Run with Metric:![AML Run with Metric](images/2.PNG) 
+AML Run with Metric:
+![AML Run with Metric](images/2.PNG) 
 
-AML Best Run: ![AML Best Run: ](images/3.PNG) 
+AML Best Run: 
+![AML Best Run: ](images/3.PNG) 
 
-AML Best Run Completed: ![AML Best Run Completed: ](images/4.PNG) 
+AML Best Run Completed:
+![AML Best Run Completed: ](images/4.PNG) 
 
 ## Hyperparameter Tuning :What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
 
@@ -70,12 +75,18 @@ Early stopping policy: I used a BanditPolicy with evaluation_interval of 5 and s
 
 The hyperdrive model model gave an accuracy of 81.6% with the following hyperparameters: C = 1000 and maximum iterations of 20. It performed better than AutoML’s best run so it will be deployed. The model could be improved by increasing the maximum number of iterations from 20.
 
-Hyperdrive Run Details: ![Hyperdrive Run Details:](images/6.PNG)
-Hyperdrive Top Runs ![Hyperdrive Top Runs:](images/7.PNG)
-Hyperdrive Run Primary Metric:![Hyperdrive Run Primary Metric:](images/8.PNG)
-Hyperdrive parameters:![Hyperdrive parameters:](images/9.PNG)
-Hyperdrive Best Run and Parameters are given below:![Hyperdrive Best Run and Parameters are given below:](images/10.PNG)
-Hyperdrive Best Run Details:![Hyperdrive Best Run Details:](images/11.PNG)
+Hyperdrive Run Details:
+![Hyperdrive Run Details:](images/6.PNG)
+Hyperdrive Top Runs 
+![Hyperdrive Top Runs:](images/7.PNG)
+Hyperdrive Run Primary Metric:
+![Hyperdrive Run Primary Metric:](images/8.PNG)
+Hyperdrive parameters:
+![Hyperdrive parameters:](images/9.PNG)
+Hyperdrive Best Run and Parameters are given below:
+![Hyperdrive Best Run and Parameters are given below:](images/10.PNG)
+Hyperdrive Best Run Details:
+![Hyperdrive Best Run Details:](images/11.PNG)
 
 
 ### An overview of the top two models with the best parameters
@@ -125,7 +136,8 @@ Endpoint status can be seen below.
 
 
 
-REST Endpoint is visible here ![here](images/16.PNG) 
+REST Endpoint is visible here 
+![here](images/16.PNG) 
 
 
 
@@ -136,6 +148,7 @@ This model can be improved by changing the model from Logistic Regression to mor
 ensemble methods for a higher accuracy. 
 
 ### Standout Suggestions
-Application Insights have been enabled ![enabled.](images/17.PNG)
+Application Insights have been enabled
+![enabled.](images/17.PNG)
 
 
