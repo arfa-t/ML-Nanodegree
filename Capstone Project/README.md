@@ -1,16 +1,16 @@
 
 
 # Telco Customer Churn Prediction 
-###   Introduction
+###  Overview
 This project is about predicting customer churn for telco customers. It used the dataset from [Kaggle](https://www.kaggle.com/blastchar/telco-customer-churn). It is a classification problem which focuses on predicting whether or not the customers left within the last month (this value is called Churn and it has two values: Yes or No. )
 ### Dataset
-### Overview
+
 
 The data set includes information about: 
-Services that each customer has signed up for – phone, multiple lines, internet, online security, online backup, device protection, tech support, and streaming TV and movies
-Customer account information – how long they’ve been a customer, contract, payment method, paperless billing, monthly charges, and total charges
-Demographic info about customers – gender, age range, and if they have partners and dependents
-Customers who left within the last month – this is the column is called Churn which has to be predicted.
+  1 Services that each customer has signed up for – phone, multiple lines, internet, online security, online backup, device protection, tech support, and            streaming TV and movies
+  2 Customer account information – how long they’ve been a customer, contract, payment method, paperless billing, monthly charges, and total charges
+  3 Demographic info about customers – gender, age range, and if they have partners and dependents
+  4 Customers who left within the last month – this is the column is called Churn which has to be predicted.
 
 
 ### Task: 
@@ -37,17 +37,20 @@ AutoML Config Parameters:
    5. The metric that Automated Machine Learning will optimize for model selection is called primary metric, here it is set to accuracy, which means the algorithms will chosen based on the highest accuracy.
    6. Training data is given as "data".
    7. Compute target is the Azure Machine Learning compute target to run the Automated Machine Learning experiment on, it is set to the name of the compute we created above.
-   8. The label column which is going to be predicted is ![“Churn”.](images/18.PNG)
+   8. The label column which is going to be predicted is “Churn”. ![“Churn”.](images/18.PNG)
 
 ### Results: 
 #### What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
 
 The  top contender if AutoML is Voting Ensemble model with accuracy of 80.9%. The model can be improved by increasing the number of iterations, changing the timeout to let the automl run for more than 30 minutes and using neural networks for classification.
 
-![AutoML Results:](images/1.PNG)
-![AML Run with Metric](images/2.PNG) 
-![AML Best Run: ](images/3.PNG) 
-![AML Best Run Completed: ](images/4.PNG) 
+AutoML Results:![AutoML Results:](images/1.PNG)
+
+AML Run with Metric:![AML Run with Metric](images/2.PNG) 
+
+AML Best Run: ![AML Best Run: ](images/3.PNG) 
+
+AML Best Run Completed: ![AML Best Run Completed: ](images/4.PNG) 
 
 ## Hyperparameter Tuning :What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
 
@@ -67,12 +70,12 @@ Early stopping policy: I used a BanditPolicy with evaluation_interval of 5 and s
 
 The hyperdrive model model gave an accuracy of 81.6% with the following hyperparameters: C = 1000 and maximum iterations of 20. It performed better than AutoML’s best run so it will be deployed. The model could be improved by increasing the maximum number of iterations from 20.
 
-![Hyperdrive Run Details:](images/6.PNG)
-![Hyperdrive Top Runs:](images/7.PNG)
-![Hyperdrive Run Primary Metric:](images/8.PNG)
-![Hyperdrive parameters:](images/9.PNG)
-![Hyperdrive Best Run and Parameters are given below:](images/10.PNG)
-![Hyperdrive Best Run Details:](images/11.PNG)
+Hyperdrive Run Details: ![Hyperdrive Run Details:](images/6.PNG)
+Hyperdrive Top Runs ![Hyperdrive Top Runs:](images/7.PNG)
+Hyperdrive Run Primary Metric:![Hyperdrive Run Primary Metric:](images/8.PNG)
+Hyperdrive parameters:![Hyperdrive parameters:](images/9.PNG)
+Hyperdrive Best Run and Parameters are given below:![Hyperdrive Best Run and Parameters are given below:](images/10.PNG)
+Hyperdrive Best Run Details:![Hyperdrive Best Run Details:](images/11.PNG)
 
 
 ### An overview of the top two models with the best parameters
@@ -89,7 +92,7 @@ AUC weighted: 0.84807
 ensemble_weights : [0.07692307692307693, 0.15384615384615385, 0.23076923076923078, 0.07692307692307693, 0.07692307692307693, 0.15384615384615385, 0.15384615384615385, 0.07692307692307693]
 ensembled_algorithms : ['LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'ExtremeRandomTrees']
 ensembled_iterations : [41, 80, 88, 47, 6, 70, 73, 81]
-F1 score weighted/; 0.80119
+F1 score weighted: 0.80119
 
 The second best model was Standard Scaler model with LightBGM,it had an accuracy of 80.4%. The AutoML Run took about 30 minutes.
 
@@ -98,7 +101,7 @@ The second best model was Standard Scaler model with LightBGM,it had an accuracy
 ### Model Deployment
 #### Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
  
-The best model from hyperdrive run is first registered and then deployed locally. To deploy locally, the code is modified using LocalWebservice.deploy_configuration() to create a deployment configuration. Then we use Model.deploy() to deploy the ![service.](images/12.PNG)
+The best model from hyperdrive run is first registered and then deployed locally. To deploy locally, the code is modified using LocalWebservice.deploy_configuration() to create a deployment configuration. Then we use Model.deploy() to deploy the service![service.](images/12.PNG)
 
 
 
@@ -115,14 +118,14 @@ Query Model Endpoint: For querying the endpoint, service.run() method is used. F
 data={"data":[{'SeniorCitizen':0, 'Partner': True, 'Dependents':False, 'PhoneService':False,'PaperlessBilling':True, 'MonthlyCharges':29.85, 'TotalCharges':29.85,'InternetService_DSL':1, 'InternetService_Fiber optic':0,'InternetService_No':0, 'OnlineSecurity_No':1,'OnlineSecurity_No internet service':1, 'OnlineSecurity_Yes':1,'OnlineBackup_No':0, 'OnlineBackup_No internet service':0,'OnlineBackup_Yes':1, 'DeviceProtection_No':1 ,'DeviceProtection_No internet service':0, 'DeviceProtection_Yes':0,'TechSupport_No':0, 'TechSupport_No internet service': 0, 'TechSupport_Yes':0,'StreamingTV_No':0, 'StreamingTV_No internet service':0, 'StreamingTV_Yes':0,'StreamingMovies_No':1, 'StreamingMovies_No internet service':0,'StreamingMovies_Yes':0, 'Contract_Month-to-month':1 , 'Contract_One year':0,'Contract_Two year':0}]}
 
 
-The response status code is 200 which indicates that the request has succeeded. Then we use the service.run method to print the predictions. The model gives “False” which means that the customer has not ![churned.](images/14.PNG)
+The response status code is 200 which indicates that the request has succeeded. Then we use the service.run method to print the predictions. The model gives “False” which means that the customer has not churned ![churned.](images/14.PNG)
 
-
+Endpoint status can be seen below.
 ![Endpoint status can be seen below.](images/15.PNG)
 
 
 
-REST Endpoint is visible ![here](images/16.PNG) 
+REST Endpoint is visible here ![here](images/16.PNG) 
 
 
 
@@ -133,6 +136,6 @@ This model can be improved by changing the model from Logistic Regression to mor
 ensemble methods for a higher accuracy. 
 
 ### Standout Suggestions
-Application Insights have been ![enabled.](images/17.PNG)
+Application Insights have been enabled ![enabled.](images/17.PNG)
 
 
