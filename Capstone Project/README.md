@@ -39,7 +39,9 @@ AutoML Config Parameters:
    7. Compute target is the Azure Machine Learning compute target to run the Automated Machine Learning experiment on, it is set to the name of the compute we created above.
    8. The label column which is going to be predicted is ![“Churn”.](images/18.PNG)
 
-### Results: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
+### Results: 
+#### What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
+
 The  top contender if AutoML is Voting Ensemble model with accuracy of 80.9%. The model can be improved by increasing the number of iterations, changing the timeout to let the automl run for more than 30 minutes and using neural networks for classification.
 
 ![AutoML Results:](images/1.PNG)
@@ -82,23 +84,26 @@ The hyperdrive model model gave an accuracy of 81.6% with the following hyperpar
 {'Regularization Strength':10,
 'Max iterations': 90,
 'accuracy':0.8123222748815165}
-2. The best AML model had an accuracy of 81.6% with the Voting Ensemble model. The second best model was Standard Scaler model with LightBGM,it had an accuracy of 80.4%. The AutoML Run took about 30 minutes.
+2. The automl run took about 41 minutes to complete. The best AML model had an accuracy of 81.6% with the Voting Ensemble model with 100% sampling. Other parameters were:
+AUC weighted: 0.84807
+ensemble_weights : [0.07692307692307693, 0.15384615384615385, 0.23076923076923078, 0.07692307692307693, 0.07692307692307693, 0.15384615384615385, 0.15384615384615385, 0.07692307692307693]
+ensembled_algorithms : ['LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'ExtremeRandomTrees']
+ensembled_iterations : [41, 80, 88, 47, 6, 70, 73, 81]
+F1 score weighted/; 0.80119
+
+The second best model was Standard Scaler model with LightBGM,it had an accuracy of 80.4%. The AutoML Run took about 30 minutes.
 
 
 
 ### Model Deployment
-#### Give an overview of the deployed model and instructions on how to query the 
-
-
-
-nt with a sample input.
+#### Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
  
 The best model from hyperdrive run is first registered and then deployed locally. To deploy locally, the code is modified using LocalWebservice.deploy_configuration() to create a deployment configuration. Then we use Model.deploy() to deploy the ![service.](images/12.PNG)
 
 
 
 
-
+Here the ACI Webservice has been successfully deployed and it can be seen that the service state is healthy.
 ![Here the ACI Webservice has been successfully deployed and it can be seen that the service state is healthy.](images/13.PNG)
 
 
