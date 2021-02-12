@@ -2,7 +2,7 @@
 
 # Telco Customer Churn Prediction 
 ###   Introduction
-This project is about predicting customer churn for telco customers. It used the dataset from Kaggle(https://www.kaggle.com/blastchar/telco-customer-churn). It is a classification problem which focuses on predicting whether or not the customers left within the last month (this value is called Churn and it has two values: Yes or No. )
+This project is about predicting customer churn for telco customers. It used the dataset from [Kaggle](https://www.kaggle.com/blastchar/telco-customer-churn). It is a classification problem which focuses on predicting whether or not the customers left within the last month (this value is called Churn and it has two values: Yes or No. )
 ### Dataset
 ### Overview
 
@@ -87,7 +87,11 @@ The hyperdrive model model gave an accuracy of 81.6% with the following hyperpar
 
 
 ### Model Deployment
-#### Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+#### Give an overview of the deployed model and instructions on how to query the 
+
+
+
+nt with a sample input.
  
 The best model from hyperdrive run is first registered and then deployed locally. To deploy locally, the code is modified using LocalWebservice.deploy_configuration() to create a deployment configuration. Then we use Model.deploy() to deploy the ![service.](images/12.PNG)
 
@@ -102,9 +106,16 @@ The best model from hyperdrive run is first registered and then deployed locally
  
  
 Query Model Endpoint: For querying the endpoint, service.run() method is used. First,store the scoring uri,, then we create the header with key "Content-Type" and value "application/json" and then we create the sample input and post to the requests. Here is the sample input: 
+
 data={"data":[{'SeniorCitizen':0, 'Partner': True, 'Dependents':False, 'PhoneService':False,'PaperlessBilling':True, 'MonthlyCharges':29.85, 'TotalCharges':29.85,'InternetService_DSL':1, 'InternetService_Fiber optic':0,'InternetService_No':0, 'OnlineSecurity_No':1,'OnlineSecurity_No internet service':1, 'OnlineSecurity_Yes':1,'OnlineBackup_No':0, 'OnlineBackup_No internet service':0,'OnlineBackup_Yes':1, 'DeviceProtection_No':1 ,'DeviceProtection_No internet service':0, 'DeviceProtection_Yes':0,'TechSupport_No':0, 'TechSupport_No internet service': 0, 'TechSupport_Yes':0,'StreamingTV_No':0, 'StreamingTV_No internet service':0, 'StreamingTV_Yes':0,'StreamingMovies_No':1, 'StreamingMovies_No internet service':0,'StreamingMovies_Yes':0, 'Contract_Month-to-month':1 , 'Contract_One year':0,'Contract_Two year':0}]}
+
+
 The response status code is 200 which indicates that the request has succeeded. Then we use the service.run method to print the predictions. The model gives “False” which means that the customer has not ![churned.](images/14.PNG)
-Endpoint status can be seen ![below.](images/15.PNG)
+
+
+![Endpoint status can be seen below.](images/15.PNG)
+
+
 
 REST Endpoint is visible ![here](images/16.PNG) 
 
