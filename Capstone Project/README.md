@@ -127,14 +127,21 @@ Hyperdrive Best Run Details:
   'accuracy':0.8123222748815165}
   
 2. The automl run took about 41 minutes to complete. The best AML model had an accuracy of 81.6% with the Voting Ensemble model with 100% sampling. Other         parameters were:
+
+
   AUC weighted: 0.84807
-  ensemble_weights : [0.07692307692307693, 0.15384615384615385, 0.23076923076923078, 0.07692307692307693, 0.07692307692307693, 0.15384615384615385,    0.15384615384615385, 0.07692307692307693]
+  
+  ensemble_weights : [0.07692307692307693, 0.15384615384615385, 0.23076923076923078, 0.07692307692307693, 0.07692307692307693, 0.15384615384615385,     0.15384615384615385, 0.07692307692307693]
+  
 
   ensembled_algorithms : ['LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'LightGBM', 'ExtremeRandomTrees']
+  
 
   ensembled_iterations : [41, 80, 88, 47, 6, 70, 73, 81]
+  
 
   F1 score weighted: 0.80119
+  
 
   The second best model was Standard Scaler model with LightBGM,it had an accuracy of 80.4%. The AutoML Run took about 30 minutes.
 
