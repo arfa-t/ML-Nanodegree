@@ -46,6 +46,7 @@ AutoML Config Parameters:
 The  top contender if AutoML is Voting Ensemble model with accuracy of 80.9%. The model can be improved by increasing the number of iterations, changing the timeout to let the automl run for more than 30 minutes and using neural networks for classification.
 
 AutoML Results:
+
 ![AutoML Results:](images/1.PNG)
 
 AML Run with Metric:
