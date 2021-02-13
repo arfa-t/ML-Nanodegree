@@ -39,7 +39,7 @@ AutoML Config Parameters:
    4. Number of cross-validations is set to be 5, which represents how many cross validations to perform when user validation data is not specified.  Since 5 folds cross validations are being performed, so for each training we use 4/5 th of data and 1/5 th of data is  used in each validation with a different holdout fold each time. 
    5. Task is classification which means only classification algorithms will be chosen in the AML Run.
    5. The metric that Automated Machine Learning will optimize for model selection is called primary metric, here it is set to accuracy, which means the algorithms will chosen based on the highest accuracy.
-   6. Training data is given as "data".
+   6. Training data is given as "data" which was uploaded via Tabular Dataset Factory earlier.
    7. Compute target is the Azure Machine Learning compute target to run the Automated Machine Learning experiment on, it is set to the name of the compute we created above.
    8. The label column which is going to be predicted is “Churn”. 
    ![“Churn”.](images/18.PNG)
