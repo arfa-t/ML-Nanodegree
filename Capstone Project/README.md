@@ -190,7 +190,7 @@ REST Endpoint is visible here
 ### Screen Recording [Link](https://drive.google.com/file/d/1ESHHbGsoX0LrqtUuhcB1GBS_Ncj-z-4_/view?usp=sharing)
 
 ### Further Improvements: 
-This model can be improved by changing the model from Logistic Regression to more complec models like RandomForest or XG Boost classifier. We can also use
+This model can be improved by changing the model from Logistic Regression to more complex models like RandomForest or XG Boost classifier. We can also use
 ensemble methods for a higher accuracy. 
 
 ### Standout Suggestions
